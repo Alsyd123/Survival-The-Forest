@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://86v2d1je7u7s"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_1xmqx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8k4c0"]
+radius = 12.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8k4c0"]
+radius = 12.0
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_1xmqx")
+
+[node name="Body" type="Sprite2D" parent="Player"]
+position = Vector2(0, 0)
+scale = Vector2(1.2, 1.2)
+color = Color(0.2, 0.7, 0.3, 1)
+region_enabled = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_8k4c0")
+
+[node name="WeaponPivot" type="Node2D" parent="Player"]
+
+[node name="WeaponSprite" type="Sprite2D" parent="Player/WeaponPivot"]
+position = Vector2(18, 0)
+scale = Vector2(0.6, 0.2)
+color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="HealthLabel" type="Label" parent="Player"]
+position = Vector2(0, -35)
+text = "HP: 100"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2(0.8, 0.8)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(200, 80)
+
+[node name="Body" type="Sprite2D" parent="Enemy"]
+color = Color(0.8, 0.2, 0.2, 1)
+scale = Vector2(1.3, 1.3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("CircleShape2D_8k4c0")
+
+[node name="EnemyLabel" type="Label" parent="Enemy"]
+position = Vector2(0, -30)
+text = "Wolf"
